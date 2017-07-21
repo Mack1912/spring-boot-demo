@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>
+			Hello Spring Maven Thymeleaf
+		</title>
+	</head>
+	
+	<body>
+	
+		<!-- the hello world inside the tag is the default value, in case the "message" is null -->
+		<h1 th:text="'Hello ' + ${name} + '!'">Hello World!!</h1>
+	</body>
+	
+</html>
