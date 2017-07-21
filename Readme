@@ -1,0 +1,9 @@
+Database used: Postgresql
+Db name: springbootdb
+Table name: t_tasks
+Columns: 
+id serial
+name          character varying 50
+description   character varying 50
+date_created  date
+finished      bit
