@@ -7,6 +7,7 @@ import org.launchcode.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,15 +42,19 @@ public class MainController {
 	@RequestMapping(value = "/new-task")
 	public String newTask(Model model) {	
 		
+//		Task task = new Task();
+//		model.addAttribute(task);
 		model.addAttribute("mode","MODE_NEW");		
 		return "index";
 		
 	}
 	
 	@PostMapping("/save-task")
-	public String saveTask(@ModelAttribute Task task, Model model) {
+	public String saveTask(@ModelAttribute Task task, BindingResult bindingResult, Model model) {
 		task.setDate_created(new Date());
 		taskService.save(task);
+		
+		// saved record, now go back to all records page
 		model.addAttribute("tasks", taskService.findAll());
 		model.addAttribute("mode","MODE_TASKS");		
 		return "index";
@@ -65,7 +70,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/delete-task")
-	public String deleteTask(@RequestParam int id, Model model) {	
+	public String deleteTask(@RequestParam int id,  Model model) {	
 		
 		taskService.delete(id);
 		model.addAttribute("tasks", taskService.findAll());

@@ -56,10 +56,10 @@ public class Task {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDesc(String desc) {
+	public void setDescription(String desc) {
 		this.description = desc;
 	}
 	public Date getDate_created() {
