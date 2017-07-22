@@ -1,14 +1,126 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>
-			Index Landing Page
-		</title>
-	</head>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Task Manager</title>
+
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="static/css/style.css" rel="stylesheet"></link>
+    
+  </head>
 	
 	<body>
-		<H1>Index Index Index</H1>
+		<div role="navigation">
+			<div class="navbar navbar-inverse">
+				<a href="/" class="navbar-brand">
+					Boot Sample
+				</a>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="new-task">Create New Tasks</a></li>				
+						<li><a href="all-tasks">All Tasks</a></li>										
+					</ul>
+				</div>
+			</div>
+		</div>
 		
+		<div th:switch="${mode}">
+		  
+		  
+		  <div th:case="'MODE_HOME'">
+		  		<div class="container" id="homeDiv">
+					<div class="jumbotron text-center">
+						<h1>Welcome Bitches!!!</h1>
+					</div>
+				</div>						
+		  </div>
+		  
+		  
+		  
+		  <div th:case="'MODE_TASKS'">
+		  		<div class="container text-center" id="tasksDiv">
+					<h3>My Tasks</h3>
+					<hr></hr>
+					<div class="table-responsive">
+						<table class="table table-stripped table-bordered text-left">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Date Created</th>
+									<th>Finished</th>
+									<th></th>
+								</tr>
+							      <tr th:each="task : ${tasks}">
+							         <td th:text="${task.id}">...</td>
+							         <td th:text="${task.name}">...</td>
+							         <td th:text="${task.desc}">...</td>
+							         <td th:text="${task.date_created}">...</td>
+							         <td th:text="${task.finished}">...</td>
+							         <td><a href="delete-task?id=${task.id}"> <span class="glyphicon glyphicon-trash"></span> </a></td>
+							      </tr>			      
+						   	
+							</thead>
+						</table>
+					</div>	
+				</div>
+		  </div>
+		  
+		  
+		  
+		  <div th:case="'MODE_NEW'">
+		  		<div class="container text-center">
+					<h3>
+						New Task
+					</h3>
+					<hr></hr>
+					<form class="form-horizontal" method="POST" action="save-task">
+						<input type="hidden" name="id" value="${task.id}" />				
+						<div class="form-group">
+							<label class="control-label col-md-3">Name:</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="name" value="${task.name}" />
+							</div>					
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">Description:</label>
+							<div class="col-md-7">
+								<input type="text" class="form-control" name="Description" value="${task.description}" />
+							</div>					
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">Finished:</label>
+							<div class="col-md-4">
+								<input type="radio" class="form-control" name="Finished" value="true" /> <div class="col-sm-1">Yes</div> 
+								<input type="radio" class="form-control" name="Finished" value="false" /> <div class="col-sm-1">No</div> 
+							</div>					
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary" value="Save" />
+							
+						</div>
+						
+					</form>
+				</div>
+		  </div>
+	  
+		</div>
+				
+		
+		
+		
+		
+  
+	    <script src="static/js/jquery.min.js"></script>
+	    <script src="static/js/bootstrap.min.js"></script>
 	</body>
+	
+	
 	
 </html>

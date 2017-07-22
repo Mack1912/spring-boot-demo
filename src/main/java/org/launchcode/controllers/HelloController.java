@@ -20,25 +20,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-	@Autowired
-	private TaskService taskService;
-	
-	@GetMapping("/all-tasks")
-	public String getAllTasks() {
-		return taskService.findAll().toString(); 
-	}
-	
-	@GetMapping("/save-task")
-	public String saveTask(@RequestParam String name, @RequestParam String desc) {
-		
-		Task t = new Task(name, desc, new Date(), true); // gives an error, cant convert boolean to bit
-		taskService.save(t);
-		
-		return "Task Saved : " + t; 
-	}
-	
-	
-	
+//	@Autowired
+//	private TaskService taskService;
+//	
+//	@GetMapping("/all-tasks")
+//	public String getAllTasks() {
+//		return taskService.findAll().toString(); 
+//	}
+//	
+//	@GetMapping("/save-task")
+//	public String saveTask(@RequestParam String name, @RequestParam String desc) {
+//		
+//		Task t = new Task(name, desc, new Date(), true); // gives an error, cant convert boolean to bit
+//		taskService.save(t);
+//		
+//		return "Task Saved : " + t; 
+//	}
+//	
+//	@GetMapping("/delete-task")
+//	public String deleteTask(@RequestParam int id) {
+//		
+//		taskService.delete(id);
+//		
+//		return "Task with id    " + id + "   Deleted"; 
+//	}
+//	
+//	
 	
 	
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)

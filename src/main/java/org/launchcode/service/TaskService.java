@@ -37,4 +37,11 @@ public class TaskService {
 	public void delete(int id) {
 		taskRepository.delete(id);
 	}
+
+	public Task findById(int id) {
+		
+		Task task = taskRepository.findOne(id);
+		
+		return task;
+	}
 }
